@@ -215,7 +215,47 @@ int LaserImagePos::alg103_runimage( cv::Mat &cvimgIn,
 
     Myhalcv2::Mydilation_circle2(m_brygujia,&imageBry,2,0,Myhalcv2::MHC_MORPH_RECT);
 
+    for(j=imageIn.starty;j<imageIn.starty+imageIn.height;j++)
+    {
+        Int32 sum_valuecoor=0;
+        Int32 sum_value=0;
+
+        for(i=imageIn.startx;i<imageIn.startx+imageIn.width;i++)
+        {
+            Int32 di=i>>2;
+            Int32 dj=j>>2;
+            if(imageBry.data[dj*imageBry.nWidth+di]!=0)
+            {
+                sum_valuecoor=sum_valuecoor+(Int32)imageIn.data[j*imageIn.nWidth+i]*i;
+                sum_value=sum_value+imageIn.data[j*imageIn.nWidth+i];
+            }
+        }
+        if(sum_value!=0)
+        {
+            f_line[j]=(float)sum_valuecoor/sum_value;
+            if(X_Linestarty==0)
+            {
+                X_Linestarty=j;//骨架起点
+            }
+            X_Lineendy=j;//骨架终点
+            X_lineMark[j]=1;
+        }
+        if(step==8)
+        {
+            if(sum_value!=0)
+            {
+                imageGasupain.data[j*imageGasupain.nWidth+X_line[j]]=128;
+            }
+        }
+    }
+    if(step==8)
+    {
+        Myhalcv2::MatToCvMat(imageGasupain,&cvimgIn);
+        return 0;
+    }
     /***********************/
+
+    /*
     //以下的图像几乎都是完美图像,需要检测出结果
     //以下对高斯图做卷积
     m16_filterIma=Myhalcv2::MatCreatzero(nHeight/4,nWidth/4,Myhalcv2::CCV_16UC1,cv8uc1_Imagebuff6);
@@ -309,8 +349,9 @@ int LaserImagePos::alg103_runimage( cv::Mat &cvimgIn,
         Myhalcv2::MatToCvMat(m_brygujia,&cvimgIn);
         return 0;
     }
+    */
 /***************************************/
-    Myhalcv2::Myresizefix2bitdata_4fSize(X_line,X_lineMark,f_line,nHeight/4);
+//  Myhalcv2::Myresizefix2bitdata_4fSize(X_line,X_lineMark,f_line,nHeight/4);
     for(i=0;i<nHeight;i++)
     {
         Int32 y=(Int32)(((float)i/4)+0.5);

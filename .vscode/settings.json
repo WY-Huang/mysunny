@@ -71,5 +71,6 @@
         "variant": "cpp",
         "bit": "cpp",
         "*.ipp": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "${workspaceFolder}/src/camera_test"
 }

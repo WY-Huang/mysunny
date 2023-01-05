@@ -98,17 +98,19 @@ CameraTest::CameraTest(const rclcpp::NodeOptions & options)
   _threadmodbus = std::thread(&CameraTest::_modbus, this, 1502);
 #endif
 
-  int WIDTH=1536,HEIGHT=1024,FPS=40,exposure_time=1000;
+  int WIDTH=1536,HEIGHT=1024,FPS=40,exposure_time=1000,VIEW_WIDTH=3072,VIEW_HEIGHT=2048;
   this->declare_parameter("width", WIDTH);
   this->declare_parameter("height", HEIGHT);
   this->declare_parameter("fps", FPS);
   this->declare_parameter("exposure_time", exposure_time);
+  this->declare_parameter("view_width", VIEW_WIDTH);
+  this->declare_parameter("view_height", VIEW_HEIGHT);
 
   pThis=this;
   _pub = this->create_publisher<Image>(_pub_name, rclcpp::SensorDataQoS());
   timer_ = this->create_wall_timer(25ms, std::bind(&camera_test::timer_callback));
-  cv_image = cv::imread("/home/qubo/mysunny/src/camera_test/bmp/test4.bmp");
-//cv_image = cv::imread("/workspace/sunny/install/camera_test/share/camera_test/bmp/test4.bmp");
+  cv_image = cv::imread("/home/qubo/mysunny/src/camera_test/bmp/test.bmp");
+//cv_image = cv::imread("/workspace/sunny/install/camera_test/share/camera_test/bmp/test.bmp");
   cv::cvtColor(cv_image, cv_image, cv::COLOR_BGR2GRAY);
 
   RCLCPP_INFO(this->get_logger(), "Initialized successfully");

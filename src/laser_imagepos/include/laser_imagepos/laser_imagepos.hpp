@@ -16,6 +16,8 @@
 //#define DEBUG_ALG       //输出算法步骤
 #define QUICK_TRANSMIT    //快速传输
 
+#define E2POOM_ALG102_LASERIMAGEPOS_DIMIANPINGJUNSHUNUM_MAX         500
+
 namespace laser_imagepos
 {
 
@@ -110,7 +112,8 @@ const std::vector<std::string> KEYS_ALS102 = {"als102_exposure_time",
                                               "als102_b_xielvopen",
                                               "als102_xielvfanwei",
                                               "als102_Uplong2",
-                                              "als102_cebankongdongdis"};
+                                              "als102_cebankongdongdis",
+                                              "als102_qiatouquweijuli"};
 
 const std::vector<std::string> KEYS_ALS103 = {"als103_exposure_time",
                                               "als103_pingjun",
@@ -120,6 +123,46 @@ const std::vector<std::string> KEYS_ALS103 = {"als103_exposure_time",
                                               "als103_jiguanglong",
                                               "als103_jiguangkuandu",
                                               "als103_jiguangduibidu"};
+
+const std::vector<std::string> KEYS_ALS104 = {"als104_exposure_time",
+                                              "als104_pingjun",
+                                              "als104_b_yanmofuzhu",
+                                              "als104_b_gudingquyu",
+                                              "als104_widthliantongdis",
+                                              "als104_highliantongdis",
+                                              "als104_gujiaerzhi",
+                                              "als104_jiguanghight",
+                                              "als104_jiguanglong",
+                                              "als104_jiguangkuandu",
+                                              "als104_Updif",
+                                              "als104_Updifmin",
+                                              "als104_Uplong",
+                                              "als104_Downdif",
+                                              "als104_Downdifmin",
+                                              "als104_Downdlong",
+                                              "als104_St_Down",
+                                              "als104_Ed_Down",
+                                              "als104_St_Up",
+                                              "als104_Ed_Up",
+                                              "als104_Updif2",
+                                              "als104_Updifmin2",
+                                              "als104_dis_center_st",
+                                              "als104_dis_center_ed",
+                                              "als104_b_opengudingdimian",
+                                              "als104_dimianpangdingjuli",
+                                              "als104_dimianpingjunshunum",
+                                              "als104_dis_center_st2",
+                                              "als104_dis_center_ed2",
+                                              "als104_dis_center_st3",
+                                              "als104_dis_center_ed3",
+                                              "als104_xuexijuli",
+                                              "als104_b_pingpowending",
+                                              "als104_pingpowending_dis",
+                                              "als104_b_xielvopen",
+                                              "als104_xielvfanwei",
+                                              "als104_Uplong2",
+                                              "als104_cebankongdongdis",
+                                              "als104_qiatouquweijuli"};
 
 /**
  * @brief To zip related parameters together.
@@ -217,6 +260,7 @@ struct Params
   int als102_xielvfanwei=10;
   int als102_Uplong2=15;
   int als102_cebankongdongdis=100;
+  int als102_qiatouquweijuli=15;
   
 /************************************/
 //算法103参数
@@ -229,6 +273,48 @@ struct Params
   int als103_jiguangkuandu=10;//激光宽度
   int als103_jiguangduibidu=5;//
 /************************************/
+//算法104参数
+  int als104_exposure_time=10000;//曝光值
+  int als104_pingjun=15;//二值阈值
+  int als104_b_yanmofuzhu=1;//是否使用掩摸辅助
+  int als104_b_gudingquyu=0;//是否固定区域
+  int als104_widthliantongdis=5;//激光宽度连通距离
+  int als104_highliantongdis=15;//激光长度连通距离
+  int als104_gujiaerzhi=160;//找骨架二值图
+  int als104_jiguanghight=50;//整体激光最短长度
+  int als104_jiguanglong=20;//单边激光最短长度
+  int als104_jiguangkuandu=6;//激光粗细
+  int als104_Updif=0;//上半段倾斜开始斜度10
+  int als104_Updifmin=-5;//上半段倾斜终止斜度10
+  int als104_Uplong=20;//上半段直线长度
+  int als104_Downdif=0;//下半段倾斜开始斜度0
+  int als104_Downdifmin=5;//下半段倾斜终止斜度0
+  int als104_Downdlong=50;//下半段直线长度
+  int als104_St_Down=5;//下半段拟合起点
+  int als104_Ed_Down=200;//下半段拟合终点
+  int als104_St_Up=5;//上半段拟合起点
+  int als104_Ed_Up=200;//上半段拟合终点
+  int als104_Updif2=-2;//上半段倾斜开始斜度10
+  int als104_Updifmin2=-5;//上半段倾斜终止斜度10
+  int als104_dis_center_st=0;     //距离中心点此处后开始统计
+  int als104_dis_center_ed=120;  //距离中心点此处后停止统计
+  int als104_b_opengudingdimian=1; //是否固定底面
+  int als104_dimianpangdingjuli=30;//两直线平面距离
+  int als104_dimianpingjunshunum=30;//底面平均数统计个数//10
+  int als104_dis_center_st2=20;//5;//0;     //距离中心点此处后开始统计
+  int als104_dis_center_ed2=120;//100;//30;  //距离中心点此处后停止统计
+  int als104_dis_center_st3=20;//5;//0;     //距离中心点此处后开始统计
+  int als104_dis_center_ed3=500;//500;//30;  //距离中心点此处后停止统计
+  int als104_xuexijuli=30;//学习距离
+  int als104_b_pingpowending=1;//平坡处稳定焊点
+  int als104_pingpowending_dis=4;//平坡处稳定距离
+  int als104_b_xielvopen=1;//斜率限制
+  int als104_xielvfanwei=10;//斜率范围
+  int als104_Uplong2=60;//在坡度时上半段直线检测长度
+  int als104_cebankongdongdis=180;//侧板跨孔洞的激光最短距离
+  int als104_qiatouquweijuli=0;//恰头去尾距离
+/************************************/
+
   int task_num = 0;
   int show_step = 0;      
 };
@@ -322,16 +408,20 @@ private:
   void alg101_declare_parameters();
   void alg102_declare_parameters();
   void alg103_declare_parameters();
+  void alg104_declare_parameters();
 
   void alg100_update_parameters();
   void alg101_update_parameters();
   void alg102_update_parameters();
   void alg103_update_parameters();
+  void alg104_update_parameters();
 
   int alg100_getcallbackParameter(const rclcpp::Parameter &p);
   int alg101_getcallbackParameter(const rclcpp::Parameter &p);
   int alg102_getcallbackParameter(const rclcpp::Parameter &p);
   int alg103_getcallbackParameter(const rclcpp::Parameter &p);
+  int alg104_getcallbackParameter(const rclcpp::Parameter &p);
+
 
   Params pm;
 
@@ -395,6 +485,7 @@ private:
   Int32 jishuST_x,jishuST_y,jishuED_x,jishuED_y,jishuNum;
   Int32 firstdimian;
   Int32 fuzhuxielv,b_fuzhuxielv,jishuxielv;
+  Myhalcv2::MyCountLine linegroup,linegroupout;
 
   Myhalcv2::L_Point32 fuzhufindST,fuzhufindED;//结果线2拟合区域,(上方)
 
@@ -411,6 +502,10 @@ private:
                       bool &solderjoints,//是否焊点
                       int step);
   int alg103_runimage(cv::Mat &cvimgIn,std::vector <cv::Point2f> &pointcloud,
+                      std::vector <cv::Point2f> &namepoint,
+                      bool &solderjoints,//是否焊点
+                      int step);
+  int alg104_runimage(cv::Mat &cvimgIn,std::vector <cv::Point2f> &pointcloud,
                       std::vector <cv::Point2f> &namepoint,
                       bool &solderjoints,//是否焊点
                       int step);

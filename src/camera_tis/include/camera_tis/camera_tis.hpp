@@ -61,6 +61,8 @@ public:
   int HEIGHT;
   int SIZE;
   int FPS;
+  int VIEW_WIDTH;
+  int VIEW_HEIGHT;
 
 private:
   /**
@@ -130,6 +132,10 @@ private:
   int _set_height(int height);
 
   int _set_fps(int fps);
+
+  int _set_view_width(int width);
+
+  int _set_view_height(int height);
 
   E2proomData camdata;
 

@@ -46,6 +46,8 @@ void LaserImagePos::alg102_declare_parameters()
     this->declare_parameter("als102_xielvfanwei", pm.als102_xielvfanwei);
     this->declare_parameter("als102_Uplong2", pm.als102_Uplong2);
     this->declare_parameter("als102_cebankongdongdis", pm.als102_cebankongdongdis);  
+    this->declare_parameter("als102_qiatouquweijuli", pm.als102_qiatouquweijuli); 
+    
 }
 
 void LaserImagePos::alg102_update_parameters()
@@ -164,6 +166,9 @@ void LaserImagePos::alg102_update_parameters()
     }
     else if (p.get_name() == "als102_cebankongdongdis") {
       pm.als102_cebankongdongdis = p.as_int();
+    }
+    else if (p.get_name() == "als102_qiatouquweijuli") {
+      pm.als102_qiatouquweijuli = p.as_int();
     }
     
   }
@@ -401,6 +406,12 @@ int LaserImagePos::alg102_getcallbackParameter(const rclcpp::Parameter &p)
             return -1;}
         else{pm.als102_cebankongdongdis=p.as_int();
             return 1;}} 
+    else if(p.get_name() == "als102_qiatouquweijuli") {
+        auto k = p.as_int();
+        if (k < 0 || k > 30) {
+            return -1;}
+        else{pm.als102_qiatouquweijuli=p.as_int();
+            return 1;}}
 
     return 0;
 }
@@ -505,6 +516,7 @@ int LaserImagePos::alg102_runimage( cv::Mat &cvimgIn,
     Int32 xielvfanwei=pm.als102_xielvfanwei;//10//斜率范围
     Int32 Uplong2=pm.als102_Uplong2;//在坡度时上半段直线检测长度
     Int32 cebankongdongdis=pm.als102_cebankongdongdis;//侧板跨孔洞的激光最短距离
+    Int32 qiatouquweijuli=pm.als102_qiatouquweijuli;//恰头去尾距离
     
 #ifdef DEBUG_ALG
     struct timespec timest = {0, 0};
@@ -754,6 +766,11 @@ int LaserImagePos::alg102_runimage( cv::Mat &cvimgIn,
       Myhalcv2::MatToCvMat(imageBry,&cvimgIn);
       return 0;
     }
+    if(qiatouquweijuli>0)
+    {
+        m_matMask=Myhalcv2::MatCreatClone(imageBry,cv8uc1_Imagebuff1);
+    }
+
     /***********************/
     //以下的图像几乎都是完美图像,需要检测出结果
     //以下对高斯图做卷积
@@ -1159,7 +1176,7 @@ int LaserImagePos::alg102_runimage( cv::Mat &cvimgIn,
                 {
                     zhengshunum=0;
                 }
-                if(zhengshunum==3)
+                if(zhengshunum>=3&&j<midfindED.y-cebankongdongdis)
                 {
                     stepfind=1;
                     stepfindED.x=(X_line[j]>>1);	//直线起点
@@ -1262,6 +1279,10 @@ con:
         jishuST_y=0;
         jishuED_x=0;
         jishuED_y=0;
+
+        fuzhuxielv=0;
+        jishuxielv=0;
+        b_fuzhuxielv=0;
     }
     if(canleranfield==1||canlearn==0)
     {
@@ -1301,7 +1322,7 @@ con:
                     {
                         zhengshunum=0;
                     }
-                    if(zhengshunum==3)
+                    if(zhengshunum>=3&&j<midfindED.y-cebankongdongdis)
                     {
                         stepfind=1;
                         stepfindED.x=(X_line[j]>>1);	//直线起点
@@ -1497,9 +1518,13 @@ con:
                     }
                 }
             }
-            if(maxXn!=0)
+            if(maxXn!=0&&max!=0)
             {
                 m_brygujia.ptr_uchar[j*m_brygujia.nWidth+(((maxX<<1)/maxXn)>>1)]=255;
+            }
+            else if(maxXn!=0&&max==0)
+            {
+                m_brygujia.ptr_uchar[j*m_brygujia.nWidth+(X_line[j>>2]<<1)]=255;
             }
         }
     #ifdef DEBUG_ALG;
@@ -1556,6 +1581,43 @@ con:
         {
             if(canlearn==1&&pingmianjuli>xuexijuli) //两直线距离远
             {
+                /*
+                static Int32 olddimianpingjunshunum=0;
+                if(olddimianpingjunshunum!=dimianpingjunshunum)
+                {
+                    olddimianpingjunshunum=dimianpingjunshunum;
+                    jishuNum=0;
+                }
+                if(jishuNum>=dimianpingjunshunum)
+                {
+                    int count;
+                    linegroup.linenum=dimianpingjunshunum;
+                    linegroup.nHeight=imageIn.nHeight;
+                    linegroup.nWidth=imageIn.nWidth;
+                    linegroup.startx=imageIn.startx;
+                    linegroup.starty=imageIn.starty;
+                    linegroup.width=imageIn.width;
+                    linegroup.height=imageIn.height;
+                    Myhalcv2::Mysort_line(&linegroup,&linegroupout,Myhalcv2::MHC_K_LINEPAIXU);
+
+                    firstdimian=1;
+                    fuzhufindST.x=linegroupout.line[dimianpingjunshunum/2].st.x;
+                    fuzhufindST.y=linegroupout.line[dimianpingjunshunum/2].st.y;
+                    fuzhufindED.x=linegroupout.line[dimianpingjunshunum/2].ed.x;
+                    fuzhufindED.y=linegroupout.line[dimianpingjunshunum/2].ed.y;
+
+                    count=jishuNum%dimianpingjunshunum;
+                    linegroup.houghinfo[count]=headlinehough;
+                    linegroup.line[count]=headline;
+                    jishuNum++;
+                }
+                else
+                {
+                    linegroup.houghinfo[jishuNum]=headlinehough;
+                    linegroup.line[jishuNum]=headline;
+                    jishuNum++;
+                }
+                */
                 if(b_xielvopen==1)
                 {
                     if(b_fuzhuxielv==0)
@@ -1577,6 +1639,7 @@ con:
                                                             jishuNum,jishuST_x,jishuST_y,jishuED_x,jishuED_y);
                         #endif 
                         }
+                        
                         jishuxielv=jishuxielv+headlinehough.theta;
                         if(jishuNum>dimianpingjunshunum)
                         {
@@ -1586,8 +1649,8 @@ con:
                     }
                     else
                     {
-                        if(headlinehough.theta<fuzhuxielv+xielvfanwei||
-                            headlinehough.theta>fuzhuxielv-xielvfanwei)
+                        if((int)headlinehough.theta<fuzhuxielv+xielvfanwei||
+                           (int)headlinehough.theta>fuzhuxielv-xielvfanwei)
                         {
                             jishuNum++;
                             jishuST_x=jishuST_x+headline.st.x;
@@ -1839,6 +1902,46 @@ con:
     imageBry=Myhalcv2::MatCreatzero(nHeight/4,nWidth/4,Myhalcv2::CCV_8UC1,cv8uc1_Imagebuff4);
     MyLine(&imageBry,linepoint32ST,linepoint32ED,255,Myhalcv2::CV_LINE_8LT,7);
     m_brygujia=Myhalcv2::MatCreatzero(nHeight,nWidth,Myhalcv2::CCV_8UC1,cv8uc1_Imagebuff7);
+    /***********/
+    //掐头去尾
+    if(qiatouquweijuli>0)
+    {
+        Myhalcv2::Myintersection(imageBry,m_matMask,&imageBry);
+        Myhalcv2::Myconnection(imageBry,&ImageConect,1,0,Myhalcv2::MHC_8LT,cv8uc1_Imagebuff3);//创建8联通区域ImageConect,最小面积120,两区域距离小于2认为同一区域
+        Mysort_region(&ImageConect,&ImageConectlong,Myhalcv2::MHC_TOP_TOPTOBOTTOM_PAIXU);
+        for(j=0;j<ImageConectlong.AllMarkPointCount;j++)
+        {
+            if(j==0)
+            {
+                int topj=ImageConectlong.AllMarkPoint[j].top;
+                int deepj=ImageConectlong.AllMarkPoint[j].bottom;
+                for(i=0;i<ImageConectlong.AllMarkPoint[j].PointArea;i++)
+                {
+                    int x=ImageConectlong.AllMarkPoint[j].point[i].x;
+                    int y=ImageConectlong.AllMarkPoint[j].point[i].y;
+                    if(y>deepj-qiatouquweijuli)
+                    {
+                        imageBry.data[y*imageBry.nWidth+x]=0;
+                    }
+                }
+            }
+            else if(j>0)
+            {
+                int topj=ImageConectlong.AllMarkPoint[j].top;
+                int deepj=ImageConectlong.AllMarkPoint[j].bottom;
+                for(i=0;i<ImageConectlong.AllMarkPoint[j].PointArea;i++)
+                {
+                    int x=ImageConectlong.AllMarkPoint[j].point[i].x;
+                    int y=ImageConectlong.AllMarkPoint[j].point[i].y;
+                    if(y<topj+qiatouquweijuli||y>deepj-qiatouquweijuli)
+                    {
+                        imageBry.data[y*imageBry.nWidth+x]=0;
+                    }
+                }
+            }
+        }
+    }
+    /***********/
     for(j=nstartj;j<=nendj;j++)
     {
         Uint16 max=0;
@@ -1863,7 +1966,7 @@ con:
                 }
             }
         }
-        if(maxXn!=0)
+        if(maxXn!=0&&max!=0)
         {
             m_brygujia.ptr_uchar[j*m_brygujia.nWidth+(((maxX<<1)/maxXn)>>1)]=255;
         }

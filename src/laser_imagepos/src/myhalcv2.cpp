@@ -15314,6 +15314,29 @@ namespace Myhalcv2
         return 0;
     }
 
+    Int8 Mygausspyramid_3levl(Mat matIn,Mat *matOut)
+    {
+        Int32 nStartY=matIn.starty;
+        Int32 nHeight=matIn.height;
+        Int32 nStartX=matIn.startx;
+        Int32 nWidth=matIn.width;
+        cv::Mat cvimgIn,cvimgOut;
+        void *buffer=matOut->data;
+
+        MatToCvMat(matIn,&cvimgIn);
+        cv::pyrDown(cvimgIn,cvimgOut);
+        cv::pyrDown(cvimgOut,cvimgOut);
+        cv::pyrDown(cvimgOut,cvimgOut);
+        CvMatToMat(cvimgOut,matOut,buffer);
+
+        matOut->startx=(nStartX>>3);
+        matOut->starty=(nStartY>>3);
+        matOut->width=(nWidth>>3);
+        matOut->height=(nHeight>>3);
+
+        return 0;
+    }
+
     Int8 MygausspyramidUp(Mat matIn,Mat *matOut)
     {
         Int32 nStartY=matIn.starty;
@@ -19038,6 +19061,7 @@ namespace Myhalcv2
                         return 1;
                     break;
                 }
+
                 imagelab=(Int32*)cvimglib.data;
 
                 if(numCC<=1)
@@ -19178,7 +19202,7 @@ namespace Myhalcv2
             default:
                 return 1;
             break;
-        }
+        }     
     }
 
     Int8 MyfindBigstconnection(Mat matIn,Mat *matOut,Int32 value,Int32 distance,conectlt Mod,background Cod,Int32 color,VLIB_CC *PointInfo)
@@ -20033,6 +20057,62 @@ namespace Myhalcv2
                 return 1;
             break;
         }
+    }
+
+    Int8 MyLineCenter_cols(Mat matIn,Mat mask,float *dataOut,Uint8 *dataOutmask)
+    {
+        Int32 nnWidth=matIn.nWidth;
+        Int32 nHeight=matIn.height;
+        Int32 nWidth=matIn.width;
+        Int32 nStartY=matIn.starty;
+        Int32 nStartX=matIn.startx;
+        Int32 i,j;
+
+        memset(dataOutmask,0,nnWidth);
+        for(i=nStartX;i<nStartX+nWidth;i++)
+        {
+            Int32 sum_valuecoor=0;
+            Int32 sum_value=0;
+            for(j=nStartY;j<nStartY+nHeight;j++)
+            {
+                if(mask.data[j*nnWidth+i]!=0)
+                {
+                    sum_valuecoor=sum_valuecoor+(Int32)matIn.data[j*nnWidth+i]*j;
+                    sum_value=sum_value+matIn.data[j*nnWidth+i];
+                    dataOut[i]=(float)sum_valuecoor/sum_value;
+                    dataOutmask[i]=1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    Int8 MyLineCenter_rows(Mat matIn,Mat mask,float *dataOut,Uint8 *dataOutmask)
+    {
+        Int32 nnWidth=matIn.nWidth;
+        Int32 nHeight=matIn.height;
+        Int32 nWidth=matIn.width;
+        Int32 nStartY=matIn.starty;
+        Int32 nStartX=matIn.startx;
+        Int32 i,j;
+
+        memset(dataOutmask,0,nnWidth);
+        for(j=nStartY;j<nStartY+nHeight;j++)
+        {
+            Int32 sum_valuecoor=0;
+            Int32 sum_value=0;
+            for(i=nStartX;i<nStartX+nWidth;i++)
+            {
+                if(mask.data[j*nnWidth+i]!=0)
+                {
+                    sum_valuecoor=sum_valuecoor+(Int32)matIn.data[j*nnWidth+i]*i;
+                    sum_value=sum_value+matIn.data[j*nnWidth+i];
+                    dataOut[j]=(float)sum_valuecoor/sum_value;
+                    dataOutmask[j]=1;
+                }
+            }
+        }
+        return 0;
     }
 
     Int8 MyhistoALLgram(Mat matIn,Uint32 *hisOut)
@@ -24347,7 +24427,14 @@ namespace Myhalcv2
                     Int32 x2=LineIn->line[Index].ed.x;
                     Int32 y1=LineIn->line[Index].st.y;
                     Int32 y2=LineIn->line[Index].ed.y;
-                    paixu[Index].value=(float)(y1-y2)/(x1-x2);
+                    if(x1-x2==0)
+                    {
+                        paixu[Index].value=FLT_MAX;
+                    }
+                    else
+                    {
+                        paixu[Index].value=(float)(y1-y2)/(x1-x2);
+                    }
                     paixu[Index].i=Index;
                 }
                 QuickSortC(paixu,LineIn->linenum);

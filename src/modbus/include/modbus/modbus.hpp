@@ -39,6 +39,8 @@ namespace modbus
 #define CAMER_SIZE_WIDTH_REG_ADD          0x0005
 #define CAMER_SIZE_HEIGHT_REG_ADD         0x0006
 #define CAMER_FPS_REG_ADD                 0x0007
+#define CAMER_SIZE_VIEW_WIDTH_REG_ADD     0x0008
+#define CAMER_SIZE_VIEW_HEIGHT_REG_ADD    0x0009
 
 #define PARAMETER_REGEDIST_NUM                 400
 
@@ -132,6 +134,7 @@ namespace modbus
 #define ALS102_XIELVFANWEI_REG_ADD             0x0063
 #define ALS102_UPLONG2_REG_ADD                 0x0064
 #define ALS102_CEBANKONGDONGDIS_REG_ADD        0x0065
+#define ALS102_QIATOUQUWEI_REG_ADD             0x0066
 
 #define ALS102_INIT_REG_ADD                    0x006f
 
@@ -145,6 +148,48 @@ namespace modbus
 #define ALS103_JIGUANGDUIBIDU_REG_ADD          0x0077
 
 #define ALS103_INIT_REG_ADD                    0x007f
+
+#define ALS104_EXPOSURE_TIME_REG_ADD           0x0080
+#define ALS104_PINGJUN_REG_ADD                 0x0081
+#define ALS104_B_YANMOFUZHU_REG_ADD            0x0082
+#define ALS104_B_GUDINGQUYU_REG_ADD            0x0083
+#define ALS104_WIDTHLIANTONGDIS_REG_ADD        0x0084
+#define ALS104_HIGHLIANTONGDIS_REG_ADD         0x0085
+#define ALS104_GUJIAERZHI_REG_ADD              0x0086
+#define ALS104_JIGUANGHIGHT_REG_ADD            0x0087
+#define ALS104_JIGUANGLONG_REG_ADD             0x0088
+#define ALS104_JIGUANGKUANDU_REG_ADD           0x0089
+#define ALS104_UPDIF_REG_ADD                   0x008a
+#define ALS104_UPDIFMIN_REG_ADD                0x008b
+#define ALS104_UPLONG_REG_ADD                  0x008c
+#define ALS104_DOWNDIF_REG_ADD                 0x008d
+#define ALS104_DOWNDIFMIN_REG_ADD              0x008e
+#define ALS104_DOWNDLONG_REG_ADD               0x008f
+#define ALS104_ST_DOWN_REG_ADD                 0x0090
+#define ALS104_ED_DOWN_REG_ADD                 0x0091
+#define ALS104_ST_UP_REG_ADD                   0x0092
+#define ALS104_ED_UP_REG_ADD                   0x0093
+#define ALS104_UPDIF2_REG_ADD                  0x0094
+#define ALS104_UPDIFMIN2_REG_ADD               0x0095
+#define ALS104_DIS_CENTER_ST_REG_ADD           0x0096
+#define ALS104_DIS_CENTER_ED_REG_ADD           0x0097
+#define ALS104_B_OPENGUDINGDIMIAN_REG_ADD      0x0098
+#define ALS104_DIMIANPANGDINGJULI_REG_ADD      0x0099
+#define ALS104_DIMIANPINGJUNSHUNUM_REG_ADD     0x009a
+#define ALS104_DIS_CENTER_ST2_REG_ADD          0x009b
+#define ALS104_DIS_CENTER_ED2_REG_ADD          0x009c
+#define ALS104_DIS_CENTER_ST3_REG_ADD          0x009d
+#define ALS104_DIS_CENTER_ED3_REG_ADD          0x009e
+#define ALS104_XUEXIJULI_REG_ADD               0x009f
+#define ALS104_B_PINGPOWENGDING_REG_ADD        0x00a0
+#define ALS104_PINGPOWENGDING_DIS_REG_ADD      0x00a1
+#define ALS104_B_XIELVOPEN_REG_ADD             0x00a2
+#define ALS104_XIELVFANWEI_REG_ADD             0x00a3
+#define ALS104_UPLONG2_REG_ADD                 0x00a4
+#define ALS104_CEBANKONGDONGDIS_REG_ADD        0x00a5
+#define ALS104_QIATOUQUWEI_REG_ADD             0x00a6
+
+#define ALS104_INIT_REG_ADD                    0x00af
 
 #define ALS_SHOW_STEP_REG_ADD                  0x018f
 
@@ -222,6 +267,8 @@ public:
   int camer_width;
   int camer_height;
   int camer_fps;
+  int camer_view_width;
+  int camer_view_height;
   void callbackGlobalParam(std::shared_future<std::vector<rclcpp::Parameter>> future);
 
   void _camera_set_size(int width,int height);
@@ -234,10 +281,12 @@ public:
   int als101_task_parameter(int ddr,u_int16_t num);
   int als102_task_parameter(int ddr,u_int16_t num);
   int als103_task_parameter(int ddr,u_int16_t num);
+  int als104_task_parameter(int ddr,u_int16_t num);
   void init_als100_parameter();
   void init_als101_parameter();
   void init_als102_parameter();
   void init_als103_parameter();
+  void init_als104_parameter();
 
   void _task_robot(int ddr,u_int16_t num);
 

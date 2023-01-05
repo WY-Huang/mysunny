@@ -174,7 +174,7 @@
 #define E2POOM_ALG101_LASERIMAGEPOS_DIS_CENTER_ED_MAX               500
 
 //算法102参数
-#define E2POOM_ALG102_LASERIMAGEPOS_SAVEBUFF              84
+#define E2POOM_ALG102_LASERIMAGEPOS_SAVEBUFF              88
 #define E2POOM_ALG102_LASERIMAGEPOS_SYSPATH_MOTO			"./SAVE/E2P_MEASUREMENT_102.bsd"
 
 #define E2POOM_ALG102_LASERIMAGEPOS_EXPOSURE_TIME_MIN				20         //曝光最小值
@@ -205,7 +205,7 @@
 #define E2POOM_ALG102_LASERIMAGEPOS_JIGUANGLONG_USE                 20
 #define E2POOM_ALG102_LASERIMAGEPOS_JIGUANGLONG_MAX                 255
 #define E2POOM_ALG102_LASERIMAGEPOS_JIGUANGKUANDU_MIN               0 
-#define E2POOM_ALG102_LASERIMAGEPOS_JIGUANGKUANDU_USE               4
+#define E2POOM_ALG102_LASERIMAGEPOS_JIGUANGKUANDU_USE               6
 #define E2POOM_ALG102_LASERIMAGEPOS_JIGUANGKUANDU_MAX               20
 #define E2POOM_ALG102_LASERIMAGEPOS_UPDIF_MIN                      -255 
 #define E2POOM_ALG102_LASERIMAGEPOS_UPDIF_USE                       0
@@ -214,7 +214,7 @@
 #define E2POOM_ALG102_LASERIMAGEPOS_UPDIFMIN_USE                   -5
 #define E2POOM_ALG102_LASERIMAGEPOS_UPDIFMIN_MAX                    255
 #define E2POOM_ALG102_LASERIMAGEPOS_UPLONG_MIN                      1
-#define E2POOM_ALG102_LASERIMAGEPOS_UPLONG_USE                      5
+#define E2POOM_ALG102_LASERIMAGEPOS_UPLONG_USE                      20
 #define E2POOM_ALG102_LASERIMAGEPOS_UPLONG_MAX                      500
 #define E2POOM_ALG102_LASERIMAGEPOS_DOWNDIF_MIN                    -255 
 #define E2POOM_ALG102_LASERIMAGEPOS_DOWNDIF_USE                     0
@@ -223,20 +223,20 @@
 #define E2POOM_ALG102_LASERIMAGEPOS_DOWNDIFMIN_USE                  5
 #define E2POOM_ALG102_LASERIMAGEPOS_DOWNDIFMIN_MAX                  255
 #define E2POOM_ALG102_LASERIMAGEPOS_DOWNDLONG_MIN                   1
-#define E2POOM_ALG102_LASERIMAGEPOS_DOWNDLONG_USE                   5
+#define E2POOM_ALG102_LASERIMAGEPOS_DOWNDLONG_USE                   50
 #define E2POOM_ALG102_LASERIMAGEPOS_DOWNDLONG_MAX                   500
 #define E2POOM_ALG102_LASERIMAGEPOS_ST_DOWN_MIN                     0
 #define E2POOM_ALG102_LASERIMAGEPOS_ST_DOWN_USE                     5
 #define E2POOM_ALG102_LASERIMAGEPOS_ST_DOWN_MAX                     500
 #define E2POOM_ALG102_LASERIMAGEPOS_ED_DOWN_MIN                     0
-#define E2POOM_ALG102_LASERIMAGEPOS_ED_DOWN_USE                     20
-#define E2POOM_ALG102_LASERIMAGEPOS_ED_DOWN_MAX                     500
+#define E2POOM_ALG102_LASERIMAGEPOS_ED_DOWN_USE                     200
+#define E2POOM_ALG102_LASERIMAGEPOS_ED_DOWN_MAX                     1500
 #define E2POOM_ALG102_LASERIMAGEPOS_ST_UP_MIN                       0
 #define E2POOM_ALG102_LASERIMAGEPOS_ST_UP_USE                       5
 #define E2POOM_ALG102_LASERIMAGEPOS_ST_UP_MAX                       500
 #define E2POOM_ALG102_LASERIMAGEPOS_ED_UP_MIN                       0
-#define E2POOM_ALG102_LASERIMAGEPOS_ED_UP_USE                       180
-#define E2POOM_ALG102_LASERIMAGEPOS_ED_UP_MAX                       500
+#define E2POOM_ALG102_LASERIMAGEPOS_ED_UP_USE                       200              
+#define E2POOM_ALG102_LASERIMAGEPOS_ED_UP_MAX                       1500
 #define E2POOM_ALG102_LASERIMAGEPOS_UPDIF2_MIN                     -255
 #define E2POOM_ALG102_LASERIMAGEPOS_UPDIF2_USE                     -2
 #define E2POOM_ALG102_LASERIMAGEPOS_UPDIF2_MAX                      255
@@ -247,32 +247,32 @@
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST_USE               0
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST_MAX               500
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED_MIN               0
-#define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED_USE               30
+#define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED_USE               120
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED_MAX               500
 #define E2POOM_ALG102_LASERIMAGEPOS_B_OPENGUDINGDIMIAN_MIN          0
 #define E2POOM_ALG102_LASERIMAGEPOS_B_OPENGUDINGDIMIAN_MAX          1
 #define E2POOM_ALG102_LASERIMAGEPOS_B_OPENGUDINGDIMIAN_USE          1
 #define E2POOM_ALG102_LASERIMAGEPOS_DIMIANPANGDINGJULI_MIN          1
 #define E2POOM_ALG102_LASERIMAGEPOS_DIMIANPANGDINGJULI_MAX          500
-#define E2POOM_ALG102_LASERIMAGEPOS_DIMIANPANGDINGJULI_USE          15
+#define E2POOM_ALG102_LASERIMAGEPOS_DIMIANPANGDINGJULI_USE          30
 #define E2POOM_ALG102_LASERIMAGEPOS_DIMIANPINGJUNSHUNUM_MIN         1
-#define E2POOM_ALG102_LASERIMAGEPOS_DIMIANPINGJUNSHUNUM_MAX         500
+#define E2POOM_ALG102_LASERIMAGEPOS_DIMIANPINGJUNSHUNUM_MAX         99     
 #define E2POOM_ALG102_LASERIMAGEPOS_DIMIANPINGJUNSHUNUM_USE         30
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST2_MIN              0
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST2_MAX              500
-#define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST2_USE              5
+#define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST2_USE              20
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED2_MIN              0
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED2_MAX              500
-#define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED2_USE              30
+#define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED2_USE              120
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST3_MIN              0
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST3_MAX              500
-#define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST3_USE              5
+#define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ST3_USE              20
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED3_MIN              0
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED3_MAX              500
 #define E2POOM_ALG102_LASERIMAGEPOS_DIS_CENTER_ED3_USE              500
 #define E2POOM_ALG102_LASERIMAGEPOS_XUEXIJULI_MIN                   0
 #define E2POOM_ALG102_LASERIMAGEPOS_XUEXIJULI_MAX                   255
-#define E2POOM_ALG102_LASERIMAGEPOS_XUEXIJULI_USE                   15
+#define E2POOM_ALG102_LASERIMAGEPOS_XUEXIJULI_USE                   30
 #define E2POOM_ALG102_LASERIMAGEPOS_B_PINGPOWENGDING_MIN            0
 #define E2POOM_ALG102_LASERIMAGEPOS_B_PINGPOWENGDING_MAX            1
 #define E2POOM_ALG102_LASERIMAGEPOS_B_PINGPOWENGDING_USE            1
@@ -286,11 +286,14 @@
 #define E2POOM_ALG102_LASERIMAGEPOS_XIELVFANWEI_MAX                 255
 #define E2POOM_ALG102_LASERIMAGEPOS_XIELVFANWEI_USE                 10
 #define E2POOM_ALG102_LASERIMAGEPOS_UPLONG2_MIN                     1
-#define E2POOM_ALG102_LASERIMAGEPOS_UPLONG2_USE                     15
+#define E2POOM_ALG102_LASERIMAGEPOS_UPLONG2_USE                     60
 #define E2POOM_ALG102_LASERIMAGEPOS_UPLONG2_MAX                     500
 #define E2POOM_ALG102_LASERIMAGEPOS_CEBANKONGDONGDIS_MIN            0
-#define E2POOM_ALG102_LASERIMAGEPOS_CEBANKONGDONGDIS_USE            180
+#define E2POOM_ALG102_LASERIMAGEPOS_CEBANKONGDONGDIS_USE            180          
 #define E2POOM_ALG102_LASERIMAGEPOS_CEBANKONGDONGDIS_MAX            500
+#define E2POOM_ALG102_LASERIMAGEPOS_QIATOUQUWEI_MIN                 0
+#define E2POOM_ALG102_LASERIMAGEPOS_QIATOUQUWEI_USE                 15
+#define E2POOM_ALG102_LASERIMAGEPOS_QIATOUQUWEI_MAX                 120
 
 
 //算法103参数
@@ -321,6 +324,131 @@
 #define E2POOM_ALG103_LASERIMAGEPOS_JIGUANGDUIBIDU_MIN              0
 #define E2POOM_ALG103_LASERIMAGEPOS_JIGUANGDUIBIDU_USE              5
 #define E2POOM_ALG103_LASERIMAGEPOS_JIGUANGDUIBIDU_MAX              255
+
+
+//算法104参数
+#define E2POOM_ALG104_LASERIMAGEPOS_SAVEBUFF              88
+#define E2POOM_ALG104_LASERIMAGEPOS_SYSPATH_MOTO			"./SAVE/E2P_MEASUREMENT_104.bsd"
+
+#define E2POOM_ALG104_LASERIMAGEPOS_EXPOSURE_TIME_MIN				20         //曝光最小值
+#define E2POOM_ALG104_LASERIMAGEPOS_EXPOSURE_TIME_USE				10000      //曝光默认值   
+#define E2POOM_ALG104_LASERIMAGEPOS_EXPOSURE_TIME_MAX				65535      //曝光最大值
+#define E2POOM_ALG104_LASERIMAGEPOS_PINGJUN_MIN                     0
+#define E2POOM_ALG104_LASERIMAGEPOS_PINGJUN_USE                     15
+#define E2POOM_ALG104_LASERIMAGEPOS_PINGJUN_MAX                     255
+#define E2POOM_ALG104_LASERIMAGEPOS_B_YANMOFUZHU_MIN                0 
+#define E2POOM_ALG104_LASERIMAGEPOS_B_YANMOFUZHU_USE                1
+#define E2POOM_ALG104_LASERIMAGEPOS_B_YANMOFUZHU_MAX                1
+#define E2POOM_ALG104_LASERIMAGEPOS_B_GUDINGQUYU_MIN                0 
+#define E2POOM_ALG104_LASERIMAGEPOS_B_GUDINGQUYU_USE                1
+#define E2POOM_ALG104_LASERIMAGEPOS_B_GUDINGQUYU_MAX                1
+#define E2POOM_ALG104_LASERIMAGEPOS_WIDTHLIANTONGDIS_MIN            0 
+#define E2POOM_ALG104_LASERIMAGEPOS_WIDTHLIANTONGDIS_USE            4
+#define E2POOM_ALG104_LASERIMAGEPOS_WIDTHLIANTONGDIS_MAX            500
+#define E2POOM_ALG104_LASERIMAGEPOS_HIGHLIANTONGDIS_MIN             0 
+#define E2POOM_ALG104_LASERIMAGEPOS_HIGHLIANTONGDIS_USE             15
+#define E2POOM_ALG104_LASERIMAGEPOS_HIGHLIANTONGDIS_MAX             500
+#define E2POOM_ALG104_LASERIMAGEPOS_GUJIAERZHI_MIN                  0 
+#define E2POOM_ALG104_LASERIMAGEPOS_GUJIAERZHI_USE                  160
+#define E2POOM_ALG104_LASERIMAGEPOS_GUJIAERZHI_MAX                  255
+#define E2POOM_ALG104_LASERIMAGEPOS_JIGUANGHIGHT_MIN                0 
+#define E2POOM_ALG104_LASERIMAGEPOS_JIGUANGHIGHT_USE                50
+#define E2POOM_ALG104_LASERIMAGEPOS_JIGUANGHIGHT_MAX                255
+#define E2POOM_ALG104_LASERIMAGEPOS_JIGUANGLONG_MIN                 0 
+#define E2POOM_ALG104_LASERIMAGEPOS_JIGUANGLONG_USE                 20
+#define E2POOM_ALG104_LASERIMAGEPOS_JIGUANGLONG_MAX                 255
+#define E2POOM_ALG104_LASERIMAGEPOS_JIGUANGKUANDU_MIN               0 
+#define E2POOM_ALG104_LASERIMAGEPOS_JIGUANGKUANDU_USE               4
+#define E2POOM_ALG104_LASERIMAGEPOS_JIGUANGKUANDU_MAX               20
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIF_MIN                      -255 
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIF_USE                       0
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIF_MAX                       255
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIFMIN_MIN                   -255 
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIFMIN_USE                   -5
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIFMIN_MAX                    255
+#define E2POOM_ALG104_LASERIMAGEPOS_UPLONG_MIN                      1
+#define E2POOM_ALG104_LASERIMAGEPOS_UPLONG_USE                      20
+#define E2POOM_ALG104_LASERIMAGEPOS_UPLONG_MAX                      500
+#define E2POOM_ALG104_LASERIMAGEPOS_DOWNDIF_MIN                    -255 
+#define E2POOM_ALG104_LASERIMAGEPOS_DOWNDIF_USE                     0
+#define E2POOM_ALG104_LASERIMAGEPOS_DOWNDIF_MAX                     255
+#define E2POOM_ALG104_LASERIMAGEPOS_DOWNDIFMIN_MIN                 -255 
+#define E2POOM_ALG104_LASERIMAGEPOS_DOWNDIFMIN_USE                  5
+#define E2POOM_ALG104_LASERIMAGEPOS_DOWNDIFMIN_MAX                  255
+#define E2POOM_ALG104_LASERIMAGEPOS_DOWNDLONG_MIN                   1
+#define E2POOM_ALG104_LASERIMAGEPOS_DOWNDLONG_USE                   50
+#define E2POOM_ALG104_LASERIMAGEPOS_DOWNDLONG_MAX                   500
+#define E2POOM_ALG104_LASERIMAGEPOS_ST_DOWN_MIN                     0
+#define E2POOM_ALG104_LASERIMAGEPOS_ST_DOWN_USE                     5
+#define E2POOM_ALG104_LASERIMAGEPOS_ST_DOWN_MAX                     500
+#define E2POOM_ALG104_LASERIMAGEPOS_ED_DOWN_MIN                     0
+#define E2POOM_ALG104_LASERIMAGEPOS_ED_DOWN_USE                     200
+#define E2POOM_ALG104_LASERIMAGEPOS_ED_DOWN_MAX                     1500
+#define E2POOM_ALG104_LASERIMAGEPOS_ST_UP_MIN                       0
+#define E2POOM_ALG104_LASERIMAGEPOS_ST_UP_USE                       5
+#define E2POOM_ALG104_LASERIMAGEPOS_ST_UP_MAX                       500
+#define E2POOM_ALG104_LASERIMAGEPOS_ED_UP_MIN                       0
+#define E2POOM_ALG104_LASERIMAGEPOS_ED_UP_USE                       200              //180
+#define E2POOM_ALG104_LASERIMAGEPOS_ED_UP_MAX                       1500
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIF2_MIN                     -255
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIF2_USE                     -2
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIF2_MAX                      255
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIFMIN2_MIN                  -255
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIFMIN2_USE                  -5
+#define E2POOM_ALG104_LASERIMAGEPOS_UPDIFMIN2_MAX                   255
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ST_MIN               0
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ST_USE               0
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ST_MAX               500
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ED_MIN               0
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ED_USE               120
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ED_MAX               500
+#define E2POOM_ALG104_LASERIMAGEPOS_B_OPENGUDINGDIMIAN_MIN          0
+#define E2POOM_ALG104_LASERIMAGEPOS_B_OPENGUDINGDIMIAN_MAX          1
+#define E2POOM_ALG104_LASERIMAGEPOS_B_OPENGUDINGDIMIAN_USE          1
+#define E2POOM_ALG104_LASERIMAGEPOS_DIMIANPANGDINGJULI_MIN          1
+#define E2POOM_ALG104_LASERIMAGEPOS_DIMIANPANGDINGJULI_MAX          500
+#define E2POOM_ALG104_LASERIMAGEPOS_DIMIANPANGDINGJULI_USE          30
+#define E2POOM_ALG104_LASERIMAGEPOS_DIMIANPINGJUNSHUNUM_MIN         1
+#define E2POOM_ALG104_LASERIMAGEPOS_DIMIANPINGJUNSHUNUM_MAX         99     //当心越界,不能大于99
+#define E2POOM_ALG104_LASERIMAGEPOS_DIMIANPINGJUNSHUNUM_USE         30
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ST2_MIN              0
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ST2_MAX              500
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ST2_USE              20
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ED2_MIN              0
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ED2_MAX              500
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ED2_USE              120
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ST3_MIN              0
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ST3_MAX              500
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ST3_USE              20
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ED3_MIN              0
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ED3_MAX              500
+#define E2POOM_ALG104_LASERIMAGEPOS_DIS_CENTER_ED3_USE              500
+#define E2POOM_ALG104_LASERIMAGEPOS_XUEXIJULI_MIN                   0
+#define E2POOM_ALG104_LASERIMAGEPOS_XUEXIJULI_MAX                   255
+#define E2POOM_ALG104_LASERIMAGEPOS_XUEXIJULI_USE                   30
+#define E2POOM_ALG104_LASERIMAGEPOS_B_PINGPOWENGDING_MIN            0
+#define E2POOM_ALG104_LASERIMAGEPOS_B_PINGPOWENGDING_MAX            1
+#define E2POOM_ALG104_LASERIMAGEPOS_B_PINGPOWENGDING_USE            1
+#define E2POOM_ALG104_LASERIMAGEPOS_PINGPOWENGDING_DIS_MIN          0
+#define E2POOM_ALG104_LASERIMAGEPOS_PINGPOWENGDING_DIS_MAX          255
+#define E2POOM_ALG104_LASERIMAGEPOS_PINGPOWENGDING_DIS_USE          4
+#define E2POOM_ALG104_LASERIMAGEPOS_B_XIELVOPEN_MIN                 0
+#define E2POOM_ALG104_LASERIMAGEPOS_B_XIELVOPEN_MAX                 1
+#define E2POOM_ALG104_LASERIMAGEPOS_B_XIELVOPEN_USE                 1
+#define E2POOM_ALG104_LASERIMAGEPOS_XIELVFANWEI_MIN                 0
+#define E2POOM_ALG104_LASERIMAGEPOS_XIELVFANWEI_MAX                 255
+#define E2POOM_ALG104_LASERIMAGEPOS_XIELVFANWEI_USE                 10
+#define E2POOM_ALG104_LASERIMAGEPOS_UPLONG2_MIN                     1
+#define E2POOM_ALG104_LASERIMAGEPOS_UPLONG2_USE                     60
+#define E2POOM_ALG104_LASERIMAGEPOS_UPLONG2_MAX                     500
+#define E2POOM_ALG104_LASERIMAGEPOS_CEBANKONGDONGDIS_MIN            0
+#define E2POOM_ALG104_LASERIMAGEPOS_CEBANKONGDONGDIS_USE            180          //180
+#define E2POOM_ALG104_LASERIMAGEPOS_CEBANKONGDONGDIS_MAX            500
+#define E2POOM_ALG104_LASERIMAGEPOS_QIATOUQUWEI_MIN                 0
+#define E2POOM_ALG104_LASERIMAGEPOS_QIATOUQUWEI_USE                 15
+#define E2POOM_ALG104_LASERIMAGEPOS_QIATOUQUWEI_MAX                 120
+
+
 
 class E2proomData
 {
@@ -590,6 +718,7 @@ public:
     Int16 als102_xielvfanwei;
     Int16 als102_Uplong2;
     Int16 als102_cebankongdongdis;
+    Int16 als102_qiatouquweijuli;
 
     void write_als102_para();				//保存任务102参数
     void init_als102_para();				//初始化任务102参数
@@ -708,6 +837,9 @@ public:
     Int16 als102_cebankongdongdis_min;
     Int16 als102_cebankongdongdis_max;
     Int16 als102_cebankongdongdis_use;
+    Int16 als102_qiatouquweijuli_min;
+    Int16 als102_qiatouquweijuli_max;
+    Int16 als102_qiatouquweijuli_use;
 
 /****************************/
     //任务103参数
@@ -748,6 +880,168 @@ public:
     Int16 als103_jiguangduibidu_use;
     Int16 als103_jiguangduibidu_max;
 
+/****************************/
+    //任务104参数
+    Uint16 als104_exposure_time;//曝光值
+    Int16 als104_pingjun;//二值阈值
+    Int16 als104_b_yanmofuzhu;//是否使用掩摸辅助
+    Int16 als104_b_gudingquyu;//是否固定区域
+    Int16 als104_widthliantongdis;//激光宽度连通距离
+    Int16 als104_highliantongdis;//激光长度连通距离
+    Int16 als104_gujiaerzhi;//找骨架二值图
+    Int16 als104_jiguanghight;//整体激光最短长度
+    Int16 als104_jiguanglong;//单边激光最短长度
+    Int16 als104_jiguangkuandu;//激光粗细
+    Int16 als104_Updif;//上半段倾斜开始斜度10
+    Int16 als104_Updifmin;//上半段倾斜终止斜度10
+    Int16 als104_Uplong;//上半段直线长度
+    Int16 als104_Downdif;//下半段倾斜开始斜度0
+    Int16 als104_Downdifmin;//下半段倾斜终止斜度0
+    Int16 als104_Downdlong;//下半段直线长度
+    Int16 als104_St_Down;//下半段拟合起点
+    Int16 als104_Ed_Down;//下半段拟合终点
+    Int16 als104_St_Up;//上半段拟合起点
+    Int16 als104_Ed_Up;//上半段拟合终点
+    Int16 als104_Updif2;//上半段倾斜开始斜度10
+    Int16 als104_Updifmin2;//上半段倾斜终止斜度10
+    Int16 als104_dis_center_st;     //距离中心点此处后开始统计
+    Int16 als104_dis_center_ed;  //距离中心点此处后停止统计
+    Int16 als104_b_opengudingdimian; //是否固定底面
+    Int16 als104_dimianpangdingjuli;//两直线平面距离
+    Int16 als104_dimianpingjunshunum;//底面平均数统计个数//10
+    Int16 als104_dis_center_st2;//5;//0;     //距离中心点此处后开始统计
+    Int16 als104_dis_center_ed2;//100;//30;  //距离中心点此处后停止统计
+    Int16 als104_dis_center_st3;//5;//0;     //距离中心点此处后开始统计
+    Int16 als104_dis_center_ed3;//500;//30;  //距离中心点此处后停止统计
+    Int16 als104_xuexijuli;//学习距离
+    Int16 als104_b_pingpowending;//平坡处稳定焊点
+    Int16 als104_pingpowending_dis;//平坡处稳定距离
+    Int16 als104_b_xielvopen;//斜率限制
+    Int16 als104_xielvfanwei;//斜率范围
+    Int16 als104_Uplong2;//在坡度时上半段直线检测长度
+    Int16 als104_cebankongdongdis;//侧板跨孔洞的激光最短距离
+    Int16 als104_qiatouquweijuli;//恰头去尾距离
+
+    void write_als104_para();				//保存任务104参数
+    void init_als104_para();				//初始化任务104参数
+
+    Uint16 als104_exposure_time_min;
+    Uint16 als104_exposure_time_max;
+    Uint16 als104_exposure_time_use;
+    Int16 als104_pingjun_min;
+    Int16 als104_pingjun_max;
+    Int16 als104_pingjun_use;
+    Int16 als104_b_yanmofuzhu_min;
+    Int16 als104_b_yanmofuzhu_max;
+    Int16 als104_b_yanmofuzhu_use;
+    Int16 als104_b_gudingquyu_min;
+    Int16 als104_b_gudingquyu_max;
+    Int16 als104_b_gudingquyu_use;
+    Int16 als104_widthliantongdis_min;
+    Int16 als104_widthliantongdis_max;
+    Int16 als104_widthliantongdis_use;
+    Int16 als104_highliantongdis_min;
+    Int16 als104_highliantongdis_max;
+    Int16 als104_highliantongdis_use;
+    Int16 als104_gujiaerzhi_min;
+    Int16 als104_gujiaerzhi_max;
+    Int16 als104_gujiaerzhi_use;
+    Int16 als104_jiguanghight_min;
+    Int16 als104_jiguanghight_max;
+    Int16 als104_jiguanghight_use;
+    Int16 als104_jiguanglong_min;
+    Int16 als104_jiguanglong_max;
+    Int16 als104_jiguanglong_use;
+    Int16 als104_jiguangkuandu_min;
+    Int16 als104_jiguangkuandu_max;
+    Int16 als104_jiguangkuandu_use;
+    Int16 als104_Updif_min;
+    Int16 als104_Updif_max;
+    Int16 als104_Updif_use;
+    Int16 als104_Updifmin_min;
+    Int16 als104_Updifmin_max;
+    Int16 als104_Updifmin_use;
+    Int16 als104_Uplong_min;
+    Int16 als104_Uplong_max;
+    Int16 als104_Uplong_use;
+    Int16 als104_Downdif_min;
+    Int16 als104_Downdif_max;
+    Int16 als104_Downdif_use;
+    Int16 als104_Downdifmin_min;
+    Int16 als104_Downdifmin_max;
+    Int16 als104_Downdifmin_use;
+    Int16 als104_Downdlong_min;
+    Int16 als104_Downdlong_max;
+    Int16 als104_Downdlong_use;
+    Int16 als104_St_Down_min;
+    Int16 als104_St_Down_max;
+    Int16 als104_St_Down_use;
+    Int16 als104_Ed_Down_min;
+    Int16 als104_Ed_Down_max;
+    Int16 als104_Ed_Down_use;
+    Int16 als104_St_Up_min;
+    Int16 als104_St_Up_max;
+    Int16 als104_St_Up_use;
+    Int16 als104_Ed_Up_min;
+    Int16 als104_Ed_Up_max;
+    Int16 als104_Ed_Up_use;
+    Int16 als104_Updif2_min;
+    Int16 als104_Updif2_max;
+    Int16 als104_Updif2_use;
+    Int16 als104_Updifmin2_min;
+    Int16 als104_Updifmin2_max;
+    Int16 als104_Updifmin2_use;
+    Int16 als104_dis_center_st_min;
+    Int16 als104_dis_center_st_max;
+    Int16 als104_dis_center_st_use;
+    Int16 als104_dis_center_ed_min;
+    Int16 als104_dis_center_ed_max;
+    Int16 als104_dis_center_ed_use;
+    Int16 als104_b_opengudingdimian_min;
+    Int16 als104_b_opengudingdimian_max;
+    Int16 als104_b_opengudingdimian_use;
+    Int16 als104_dimianpangdingjuli_min;
+    Int16 als104_dimianpangdingjuli_max;
+    Int16 als104_dimianpangdingjuli_use;
+    Int16 als104_dimianpingjunshunum_min;
+    Int16 als104_dimianpingjunshunum_max;
+    Int16 als104_dimianpingjunshunum_use;
+    Int16 als104_dis_center_st2_min;
+    Int16 als104_dis_center_st2_max;
+    Int16 als104_dis_center_st2_use;
+    Int16 als104_dis_center_ed2_min;
+    Int16 als104_dis_center_ed2_max;
+    Int16 als104_dis_center_ed2_use;
+    Int16 als104_dis_center_st3_min;
+    Int16 als104_dis_center_st3_max;
+    Int16 als104_dis_center_st3_use;
+    Int16 als104_dis_center_ed3_min;
+    Int16 als104_dis_center_ed3_max;
+    Int16 als104_dis_center_ed3_use;
+    Int16 als104_xuexijuli_min;
+    Int16 als104_xuexijuli_max;
+    Int16 als104_xuexijuli_use;
+    Int16 als104_b_pingpowending_min;
+    Int16 als104_b_pingpowending_max;
+    Int16 als104_b_pingpowending_use;
+    Int16 als104_pingpowending_dis_min;
+    Int16 als104_pingpowending_dis_max;
+    Int16 als104_pingpowending_dis_use;
+    Int16 als104_b_xielvopen_min;
+    Int16 als104_b_xielvopen_max;
+    Int16 als104_b_xielvopen_use;
+    Int16 als104_xielvfanwei_min;
+    Int16 als104_xielvfanwei_max;
+    Int16 als104_xielvfanwei_use;
+    Int16 als104_Uplong2_min;
+    Int16 als104_Uplong2_max;
+    Int16 als104_Uplong2_use;
+    Int16 als104_cebankongdongdis_min;
+    Int16 als104_cebankongdongdis_max;
+    Int16 als104_cebankongdongdis_use;
+    Int16 als104_qiatouquweijuli_min;
+    Int16 als104_qiatouquweijuli_max;
+    Int16 als104_qiatouquweijuli_use;
 
 /****************************/
     void write();
@@ -759,16 +1053,19 @@ private:
     void Init_als101_E2proomData();
     void Init_als102_E2proomData();
     void Init_als103_E2proomData();
+    void Init_als104_E2proomData();
     
     void als100_check_para();
     void als101_check_para();
     void als102_check_para();
     void als103_check_para();
+    void als104_check_para();
 
     void als100_read_para();
     void als101_read_para();
     void als102_read_para();
     void als103_read_para();
+    void als104_read_para();
 };
 
 #endif // E2PROOMDATA_H

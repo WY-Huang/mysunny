@@ -2,7 +2,7 @@
 #define MYHALCV2_H
 
 
-#define USE_XIMGPROC    0
+//#define USE_XIMGPROC    1
 
 #include "opencv2/opencv.hpp"
 #if USE_XIMGPROC == 1
@@ -24,7 +24,7 @@
 #define MHC_ROLENGTH			401				//霍夫变换肉范围
 #define MHC_TETARANGE_MID		3				//霍夫变换西塔上下限
 #define MHC_SEARCH_SIZE			18				//霍夫变换完成后的微调搜索范围rho
-#define MHC_SEARCH_LINENUM		20				//霍夫变换最多找的线条数
+#define MHC_SEARCH_LINENUM		100				//霍夫变换最多找的线条数
 #define MHC_PEAK_NUM			2000			//波形图最多支持的点个数
 #define MHC_VER_NUM				2000			//VER缓存最多支持的缓冲元素个数
 #define MHC_ROATE				601				//旋转细分度
@@ -46,6 +46,7 @@
 typedef uint64_t  Uint64;
 typedef int64_t   Int64;
 #endif
+
 
 namespace Myhalcv2
 {
@@ -845,7 +846,6 @@ namespace Myhalcv2
     //创建一个Hough型Mat
     Mat HoughCreat(void *bufferIn);	//输入要创建的Mat数据内存存放空间,bufferIn大小至少为getHoughsize();
 
-
     /*********************以下函数如果有输出*Mat部分，则需要保证输出*Mat图像内存有足够的空间，否则将越界,函数运行成功返回0，否则返回非0************************/
     //把matIn_Out数据类型转换,(需要保证转换之后的类型有足够的内存，所以一般建议从大类型转换到小类型.如果转换后与转换前的类型不同，则转换后出来的图像内存信息数据需要重新赋值)
     Int8 MyconvertTo(Mat *matIn_Out,type Mod);
@@ -1180,6 +1180,10 @@ namespace Myhalcv2
     Int8 Mygausspyramid_2levl(Mat matIn,        //输入待处理矩阵
                               Mat *matOut);     //输出下二层高斯金字塔图象,注意内存大小,至少为getsizeof(matIn._type)*(matIn.nHeight/4*matIn.nWidth/4)
 
+    //求下三层的高斯金字塔,2x2采样,用5x5高斯窗口,(会作用于全部区域,需要小心使用)
+    Int8 Mygausspyramid_3levl(Mat matIn,        //输入待处理矩阵
+                              Mat *matOut);     //输出下三层高斯金字塔图象,注意内存大小,至少为getsizeof(matIn._type)*(matIn.nHeight/8*matIn.nWidth/8)
+
     //求上一层高斯金字塔,(会作用于全部区域,需要小心使用)(如果再加上上一层的拉普拉斯塔(需要注意无符号类型的拉普拉斯塔数据的正负值可能是居中显示)就会变为上一层原图)
     Int8 MygausspyramidUp(Mat matIn,		//输入待处理矩阵
                           Mat *matOut);		//输出上一层高斯金字塔图象,注意内存大小,至少为getsizeof(matIn._type)*(matIn.nHeight*2*matIn.nWidth*2)
@@ -1380,6 +1384,18 @@ namespace Myhalcv2
                              Int32 distanceh,		//两块区域纵向相距小于等于distanceh距离内被判为同块联通域,最小为0,
                              dilaero distancemod,	//distancemod=MHC_MORPH_ELLIPSE为椭圆距离distancemod=MHC_MORPH_RECT为矩形距离,当distancew和distanceh都为0时,distancemod可随意取其中之一
                              conectlt Mod);	 		//Mod=MHC_4LT为4连通,Mod=MHC_8LT为8连通
+
+    //横向灰度质心法(只处理Mat矩阵的有效区域,且mask不等于0部分)
+    Int8 MyLineCenter_cols(Mat matIn,            //输入待处理矩阵仅支持输入CV_8UC1二值图
+                           Mat mask,             //只对mask中不为0的区域做统计,mask需为CV_8UV1型,且与matIn等尺寸
+                           float *dataOut,		//输出浮点型数组,注意内存大小,至少为sizeof(float)*matIn*nWidth
+                           Uint8 *dataOutmask);  //输出浮点型数组有效位，1表所对应的dataOut内容有效，注意内存大小,至少为sizeof(Uint8)*matIn*nWidth
+
+    //纵向灰度质心法(只处理Mat矩阵的有效区域,且mask不等于0部分)
+    Int8 MyLineCenter_rows(Mat matIn,            //输入待处理矩阵仅支持输入CV_8UC1二值图
+                           Mat mask,             //只对mask中不为0的区域做统计,mask需为CV_8UV1型,且与matIn等尺寸
+                           float *dataOut,		 //输出浮点型数组,注意内存大小,至少为sizeof(float)*matIn*nHeight
+                           Uint8 *dataOutmask);  //输出浮点型数组有效位，1表所对应的dataOut内容有效，注意内存大小,至少为sizeof(Uint8)*matIn*nHeight
 
     //统计灰度直方图(会作用于全部区域,需要小心使用)
     Int8 MyhistoALLgram(Mat matIn,			//输入待处理图象仅支持输入CV_8UC1

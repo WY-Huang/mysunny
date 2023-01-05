@@ -120,6 +120,9 @@ void E2proomData::Init_als102_E2proomData()
     als102_cebankongdongdis_min=E2POOM_ALG102_LASERIMAGEPOS_CEBANKONGDONGDIS_MIN;
     als102_cebankongdongdis_use=E2POOM_ALG102_LASERIMAGEPOS_CEBANKONGDONGDIS_USE;
     als102_cebankongdongdis_max=E2POOM_ALG102_LASERIMAGEPOS_CEBANKONGDONGDIS_MAX;
+    als102_qiatouquweijuli_min=E2POOM_ALG102_LASERIMAGEPOS_QIATOUQUWEI_MIN;
+    als102_qiatouquweijuli_use=E2POOM_ALG102_LASERIMAGEPOS_QIATOUQUWEI_USE;
+    als102_qiatouquweijuli_max=E2POOM_ALG102_LASERIMAGEPOS_QIATOUQUWEI_MAX;
 }
 
 void E2proomData::als102_check_para()
@@ -200,6 +203,8 @@ void E2proomData::als102_check_para()
         als102_Uplong2=als102_Uplong2_use;
     if(als102_cebankongdongdis<als102_cebankongdongdis_min||als102_cebankongdongdis>als102_cebankongdongdis_max)
         als102_cebankongdongdis=als102_cebankongdongdis_use;
+    if(als102_qiatouquweijuli<als102_qiatouquweijuli_min||als102_qiatouquweijuli>als102_qiatouquweijuli_max)
+        als102_qiatouquweijuli=als102_qiatouquweijuli_use;
 }
 
 void E2proomData::als102_read_para()
@@ -302,6 +307,8 @@ void E2proomData::als102_read_para()
       i16_p++;
       als102_cebankongdongdis=*i16_p;
       i16_p++;
+      als102_qiatouquweijuli=*i16_p;
+      i16_p++;
     }
     if(buff!=NULL)
     {
@@ -402,6 +409,8 @@ void E2proomData::write_als102_para()
     i16_p++;
     *i16_p=als102_cebankongdongdis;
     i16_p++;
+    *i16_p=als102_qiatouquweijuli;
+    i16_p++;
     
 
     fo.WriteFile(E2POOM_ALG102_LASERIMAGEPOS_SYSPATH_MOTO,buff,E2POOM_ALG102_LASERIMAGEPOS_SAVEBUFF);
@@ -453,4 +462,5 @@ void E2proomData::init_als102_para()
     als102_xielvfanwei=als102_xielvfanwei_use;
     als102_Uplong2=als102_Uplong2_use;
     als102_cebankongdongdis=als102_cebankongdongdis_use;
+    als102_qiatouquweijuli=als102_qiatouquweijuli_use;
 }

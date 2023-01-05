@@ -111,6 +111,8 @@ CameraTis::CameraTis(const rclcpp::NodeOptions & options)
   HEIGHT = camdata.camer_size_height;
   SIZE = WIDTH * HEIGHT;
   FPS = camdata.camer_fps;
+  VIEW_WIDTH = camdata.camer_size_view_width;
+  VIEW_HEIGHT = camdata.camer_size_view_height;
 
 //_param_imagepos = std::make_shared<rclcpp::AsyncParametersClient>(this, "laser_imagepos_node");
   _pub = this->create_publisher<Image>(_pub_name, rclcpp::SensorDataQoS());
@@ -147,6 +149,8 @@ void CameraTis::_declare_parameters()
   this->declare_parameter("width", WIDTH);
   this->declare_parameter("height", HEIGHT);
   this->declare_parameter("fps", FPS);
+  this->declare_parameter("view_width", VIEW_WIDTH);
+  this->declare_parameter("view_height", VIEW_HEIGHT);
   this->declare_parameter("power", false, ParameterDescriptor(), true);
 }
 
@@ -165,10 +169,10 @@ void CameraTis::_initialize_camera()
 
   char newPIPELINE_STR[500];
   sprintf(newPIPELINE_STR,"tcambin name=source"
-  " ! video/x-raw,format=GRAY8,width=3072,height=2048,framerate=%d/1"
+  " ! video/x-raw,format=GRAY8,width=%d,height=%d,framerate=%d/1"
   " ! videoscale"
   " ! video/x-raw,width=%d,height=%d"
-  " ! appsink name=sink emit-signals=true sync=false drop=true max-buffers=4",FPS,WIDTH,HEIGHT);
+  " ! appsink name=sink emit-signals=true sync=false drop=true max-buffers=4",VIEW_WIDTH,VIEW_HEIGHT,FPS,WIDTH,HEIGHT);
 
   _pipeline = gst_parse_launch(newPIPELINE_STR, NULL);
   if (_pipeline == NULL) {
@@ -237,6 +241,22 @@ void CameraTis::_initialize_camera()
           if (ret) {
             result.successful = false;
             result.reason = "Failed to set fps";
+            return result;
+          }
+        }
+        else if (p.get_name() == "view_width") {
+          auto ret = this->_set_view_width(p.as_int());
+          if (ret) {
+            result.successful = false;
+            result.reason = "Failed to set view_width";
+            return result;
+          }
+        }
+        else if (p.get_name() == "view_height") {
+          auto ret = this->_set_view_height(p.as_int());
+          if (ret) {
+            result.successful = false;
+            result.reason = "Failed to set view_height";
             return result;
           }
         }
@@ -413,6 +433,34 @@ int CameraTis::_set_height(int height)
   else
   {
     camdata.camer_size_height=height;
+    camdata.write_camer_para();
+  }
+  return 0;
+}
+
+int CameraTis::_set_view_width(int width)
+{
+  if(width<(int)camdata.camer_size_view_width_min||width>(int)camdata.camer_size_view_width_max)
+  { 
+    return 1;
+  }
+  else
+  {
+    camdata.camer_size_view_width=width;
+    camdata.write_camer_para();
+  }
+  return 0;
+}
+
+int CameraTis::_set_view_height(int height)
+{
+  if(height<(int)camdata.camer_size_view_height_min||height>(int)camdata.camer_size_view_height_max)
+  { 
+    return 1;
+  }
+  else
+  {
+    camdata.camer_size_view_height=height;
     camdata.write_camer_para();
   }
   return 0;
